@@ -11,7 +11,7 @@ name = 'topher'
 greeting = "hello #{name}"
 ```
 
-- `nil` represents absent vales but they aren't equal to empty strings or 0 like in JS.
+- `nil` represents absent values but they aren't equal to empty strings or 0 like in JS.
 - Ruby uses hashes for key value pairs: `{ key1: "value", key2: 2}`
   - (like dictionaries in python)
 - symbols `:my_symbol` are immutable strings, typically used as keys in hashes
