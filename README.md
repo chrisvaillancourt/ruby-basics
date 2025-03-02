@@ -74,6 +74,27 @@ else
 end
 ```
 
+```rb
+print 'Enter a number (1-5):'
+a = gets.to_i
+String.new
+
+spell = case a
+        when 1
+          'one'
+        when 2
+          'two'
+        when 3
+          'three'
+        when 4
+          'four'
+        when 5
+          'five'
+        end
+
+puts "The number you entered is #{spell}" if spell
+```
+
 ## Functions
 
 - use the `def` keyword
