@@ -100,3 +100,39 @@ end
 add(2, 2) # 4
 ```
 
+## Classes
+
+```rb
+class MyClass
+  attr_accessor :attribute1, :attribute2 # Creates getter and setter methods
+
+  def initialize(attr1, attr2)
+    @attribute1 = attr1 # Instance variables start with @
+    @attribute2 = attr2
+  end
+
+  def my_instance_method
+    # Use instance variables
+    puts "Attribute 1: #{@attribute1}"
+  end
+
+  def self.my_class_method
+    #Class method, can be called on the class itself.
+    puts "I am a class method."
+  end
+
+end
+
+obj = MyClass.new("value1", "value2")
+obj.my_instance_method  # Accessing an instance method
+puts obj.attribute1       # Accessing an attribute (using the getter)
+obj.attribute2 = "new value" # Setting an attribute (using the setter)
+MyClass.my_class_method # Calling class method.
+```
+
+- instance variables start with `@`
+- `attr_accessor`, `attr_reader`, `attr_writer` are meta programming features
+  - `attr_accessor` creates a getter and setter method
+  - `attr_reader` only creates a getter
+  - `attr_writer` only creates a setter
+- `self` TODO
