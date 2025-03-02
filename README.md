@@ -136,3 +136,64 @@ MyClass.my_class_method # Calling class method.
   - `attr_reader` only creates a getter
   - `attr_writer` only creates a setter
 - `self` TODO
+
+## Blocks, Procs and Lambdas
+
+- ⬆️ all are ways of passing around code
+- Blocks:  Anonymous chunks of code enclosed in `{}` or `do`...`end`.  They are not objects on their own. They are always passed to a method
+
+```rb
+[1, 2, 3].each { |number| puts number * 2 }
+
+# Or, using do...end (more common for multi-line blocks):
+[1, 2, 3].each do |number|
+  puts "Number: #{number}"
+  puts "Doubled: #{number * 2}"
+end
+```
+
+The `yield` keyword is used to call blocks passed to methods:
+
+```rb
+def foo
+  puts "before yielding block"
+  yield
+  puts "after yielding block"
+end
+
+foo {puts "call me"}
+# before yielding block
+# call me
+# after yielding block
+```
+
+You can pass arguments to yield, which become the block parameters:
+
+```rb
+def greet(name)
+  yield name
+end
+
+greet('Topher') { |n| puts "Hello, #{n}"} # Hello, Topher
+```
+
+Procs are blocks that have been converted into objects. They can be stored in a variable and passed around.
+
+```rb
+my_proc = Proc.new { |x| puts x * 2}
+# & converts the proc to a block
+[1,2,3].each(&my_proc)
+```
+
+Lambdas are similar to procs but behave differently when it comes to `return` and argument strictness.
+
+```rb
+my_lambda = lambda { |x| puts x * 2 }
+[1, 2, 3].each(&my_lambda)
+```
+
+lambda vs proc:
+
+- A `return` inside a proc returns from the *surrounding method* (the one where the proc was defined), whereas a `return` inside a lambda returns only from the lambda itself
+- argument strictness: lambdas enforce the correct number of args, procs don't
+
