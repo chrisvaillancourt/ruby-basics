@@ -74,3 +74,29 @@ else
 end
 ```
 
+## Functions
+
+- use the `def` keyword
+- parentheses around arguments are often optional but suggested for clarity
+- The last evaluated expression is implictitly return, can use `return` keyword but it's typically ommitted.
+- methods can be caled with or without parentheses
+
+```rb
+def greeting(name1, name2 = "default value") # Optional arguments
+  # Method body
+  result = "hello, #{name1} and #{name2}"
+  return result  # 'return' is optional; the last evaluated expression is returned
+end
+
+greeting('topher', 'sam') # "hello, topher and sam"
+greeting 'topher', 'sam' # "hello, topher and sam"
+greeting('topher') # "hello, topher and default value"
+greeting 'topher' # "hello, topher and default value"
+
+def add(a, b)
+  a + b
+end
+
+add(2, 2) # 4
+```
+
