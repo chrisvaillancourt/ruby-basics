@@ -197,3 +197,49 @@ lambda vs proc:
 - A `return` inside a proc returns from the *surrounding method* (the one where the proc was defined), whereas a `return` inside a lambda returns only from the lambda itself
 - argument strictness: lambdas enforce the correct number of args, procs don't
 
+## Modules, mixins, and namespacing
+
+Modules are a collectuib of methods and constants. They create a namespace so they can prevent name conflicts.
+
+```rb
+module MyModule
+  CONSTANT = 10
+
+  def self.my_method
+    puts "Method in MyModule"
+  end
+end
+
+puts MyModule::CONSTANT # 10
+MyModule.my_method # Method in MyModule
+```
+
+Mixings add functionality to classes without inheritance:
+
+```rb
+module Greetable
+  def greet
+    puts "Hello, #{name}!" # Assumes the class has a 'name' method or attribute
+  end
+end
+
+class Person
+  include Greetable # Mixes in the Greetable module
+  attr_accessor :name
+end
+class Animal
+  include Greetable
+  attr_accessor :name
+end
+
+person = Person.new
+person.name = "Topher"
+person.greet # Output: Hello, Topher!
+
+animal = Animal.new
+animal.name = "Bambi"
+animal.greet # Hello, Bambi!
+```
+
+- `include` mixes in the module's methods at the instance level
+- `extend` mises in at the class level
